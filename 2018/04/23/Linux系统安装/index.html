@@ -87,9 +87,9 @@
 <meta property="og:site_name" content="slagmale">
 <meta property="og:description" content="1.安装虚拟机+操作系统 : VMware  Centos 2.设置基础环境三要素：IP  主机名  映射(包括本地) 3.网络配置 ：设置DNS解析   PING通外网 4.创建普通用户  5.设置sudo权限 6.禁用防火墙 7.卸载系统自带的Open jdk并配置Oracle jdk">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="https://images2018.cnblogs.com/blog/1299285/201804/1299285-20180423194207535-943138368.png">
-<meta property="og:image" content="https://images2018.cnblogs.com/blog/1299285/201804/1299285-20180423194228308-2123330351.jpg">
-<meta property="og:image" content="https://images2018.cnblogs.com/blog/1299285/201804/1299285-20180423194241776-1998112265.png">
+<meta property="og:image" content="https://github.com/slagmale/IMG/raw/master/img/1.png">
+<meta property="og:image" content="https://github.com/slagmale/IMG/raw/master/img/2.jpg">
+<meta property="og:image" content="https://github.com/slagmale/IMG/raw/master/img/3.png">
 <meta property="og:image" content="https://images2018.cnblogs.com/blog/1299285/201804/1299285-20180423203716617-1551071675.png">
 <meta property="og:image" content="https://images2018.cnblogs.com/blog/1299285/201804/1299285-20180423203800963-973057245.png">
 <meta property="og:image" content="https://images2018.cnblogs.com/blog/1299285/201804/1299285-20180423203745244-1185587348.png">
@@ -106,11 +106,11 @@
 <meta property="og:image" content="https://images2018.cnblogs.com/blog/1299285/201804/1299285-20180423204941144-381611163.png">
 <meta property="og:image" content="https://images2018.cnblogs.com/blog/1299285/201804/1299285-20180423205112149-207118027.png">
 <meta property="og:image" content="https://images2018.cnblogs.com/blog/1299285/201804/1299285-20180423205202319-2026897986.png">
-<meta property="og:updated_time" content="2018-04-23T14:31:21.419Z">
+<meta property="og:updated_time" content="2018-04-23T15:51:48.579Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Linux系统中Centos安装及配置">
 <meta name="twitter:description" content="1.安装虚拟机+操作系统 : VMware  Centos 2.设置基础环境三要素：IP  主机名  映射(包括本地) 3.网络配置 ：设置DNS解析   PING通外网 4.创建普通用户  5.设置sudo权限 6.禁用防火墙 7.卸载系统自带的Open jdk并配置Oracle jdk">
-<meta name="twitter:image" content="https://images2018.cnblogs.com/blog/1299285/201804/1299285-20180423194207535-943138368.png">
+<meta name="twitter:image" content="https://github.com/slagmale/IMG/raw/master/img/1.png">
 
 
 
@@ -407,10 +407,10 @@
 <a id="more"></a>
 <p>我用的是VM ware12版本 Centos6.x 比较稳定。安装完成后进行相关的配置</p>
 <h2 id="虚拟机设置"><a href="#虚拟机设置" class="headerlink" title="虚拟机设置"></a>虚拟机设置</h2><p>1.打开编辑虚拟机设置，设置相关设备（内存 处理器 硬盘）。网络连接使用NAT模式，用于共享主机的ip地址。</p>
-<p><img src="https://images2018.cnblogs.com/blog/1299285/201804/1299285-20180423194207535-943138368.png" alt="img"></p>
+<p><img src="https://github.com/slagmale/IMG/raw/master/img/1.png" alt="img"></p>
 <p>2.配置虚拟网络编辑器。打开VM ware软件上方的编辑选项点击进入。修改VMnet 8 适配器网段地址以及在NAT设置中设置网关。</p>
-<p> <img src="https://images2018.cnblogs.com/blog/1299285/201804/1299285-20180423194228308-2123330351.jpg" alt="img"></p>
-<p><img src="https://images2018.cnblogs.com/blog/1299285/201804/1299285-20180423194241776-1998112265.png" alt="img"></p>
+<p> <img src="https://github.com/slagmale/IMG/raw/master/img/2.jpg" alt="img"></p>
+<p><img src="https://github.com/slagmale/IMG/raw/master/img/3.png" alt="img"></p>
 <h2 id="基本环境的配置"><a href="#基本环境的配置" class="headerlink" title="基本环境的配置"></a>基本环境的配置</h2><h3 id="修改主机名"><a href="#修改主机名" class="headerlink" title="修改主机名"></a>修改主机名</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">查看主机名  </span><br><span class="line"></span><br><span class="line">        在命令行界面输入 hostname</span><br><span class="line"></span><br><span class="line">临时修改</span><br><span class="line"></span><br><span class="line">        hostname bigdata-training01.hd.com</span><br><span class="line"></span><br><span class="line">永久修改/etc/sysconfig/network   如果没有即时生效 命令行输入 init 6 重启虚拟机</span><br><span class="line">        vim /etc/sysconfig/network</span><br></pre></td></tr></table></figure>
 <p>查看主机名</p>
 <p> <img src="https://images2018.cnblogs.com/blog/1299285/201804/1299285-20180423203716617-1551071675.png" alt="img"></p>
