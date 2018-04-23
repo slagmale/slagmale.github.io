@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="hexo," />
+  <meta name="keywords" content="linux centos," />
 
 
 
@@ -79,18 +79,23 @@
 
 
 
-<meta name="description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub.">
-<meta name="keywords" content="hexo">
+<meta name="description" content="Linux系统中Centos安装及配置最近开始学大数据，在VM ware虚拟环境在安装Centos 6.x系统。下面是相关的一些配置。 虚拟机设置1.打开编辑虚拟机设置，设置相关设备（内存 处理器 硬盘）。网络连接使用NAT模式，用于共享主机的ip地址。  2.配置虚拟网络编辑器。打开VM ware软件上方的编辑选项点击进入。修改VMnet 8 适配器网段地址以及在NAT设置中设置网关。   基本">
+<meta name="keywords" content="linux centos">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Hello World">
-<meta property="og:url" content="http://slagmale.github.io/2018/04/21/hello-world/index.html">
+<meta property="og:url" content="http://slagmale.github.io/2018/04/23/Linux系统安装/index.html">
 <meta property="og:site_name" content="slagmale">
-<meta property="og:description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub.">
+<meta property="og:description" content="Linux系统中Centos安装及配置最近开始学大数据，在VM ware虚拟环境在安装Centos 6.x系统。下面是相关的一些配置。 虚拟机设置1.打开编辑虚拟机设置，设置相关设备（内存 处理器 硬盘）。网络连接使用NAT模式，用于共享主机的ip地址。  2.配置虚拟网络编辑器。打开VM ware软件上方的编辑选项点击进入。修改VMnet 8 适配器网段地址以及在NAT设置中设置网关。   基本">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-04-21T08:55:37.109Z">
+<meta property="og:image" content="c:/Users/whc/Desktop/md/images/1.png">
+<meta property="og:image" content="c:/Users/whc/Desktop/md/images/2.jpg">
+<meta property="og:image" content="c:/Users/whc/Desktop/md/images/3.png">
+<meta property="og:image" content="c:/Users/whc/Desktop/md/images/4.png">
+<meta property="og:updated_time" content="2018-04-23T13:17:32.382Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Hello World">
-<meta name="twitter:description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub.">
+<meta name="twitter:description" content="Linux系统中Centos安装及配置最近开始学大数据，在VM ware虚拟环境在安装Centos 6.x系统。下面是相关的一些配置。 虚拟机设置1.打开编辑虚拟机设置，设置相关设备（内存 处理器 硬盘）。网络连接使用NAT模式，用于共享主机的ip地址。  2.配置虚拟网络编辑器。打开VM ware软件上方的编辑选项点击进入。修改VMnet 8 适配器网段地址以及在NAT设置中设置网关。   基本">
+<meta name="twitter:image" content="c:/Users/whc/Desktop/md/images/1.png">
 
 
 
@@ -120,7 +125,7 @@
 
 
 
-  <link rel="canonical" href="http://slagmale.github.io/2018/04/21/hello-world/"/>
+  <link rel="canonical" href="http://slagmale.github.io/2018/04/23/Linux系统安装/"/>
 
 
 
@@ -288,7 +293,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://slagmale.github.io/2018/04/21/hello-world/">
+    <link itemprop="mainEntityOfPage" href="http://slagmale.github.io/2018/04/23/Linux系统安装/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="汪Vely">
@@ -317,8 +322,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-04-21T09:28:09+08:00">
-                2018-04-21
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-04-23T21:15:27+08:00">
+                2018-04-23
               </time>
             
 
@@ -340,8 +345,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/同步github/" itemprop="url" rel="index">
-                    <span itemprop="name">同步github</span>
+                  <a href="/categories/linux/" itemprop="url" rel="index">
+                    <span itemprop="name">linux</span>
                   </a>
                 </span>
 
@@ -377,15 +382,21 @@
       
 
       
-        <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.<br><a id="more"></a></p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="noopener">Deployment</a></p>
+        <h1 id="Linux系统中Centos安装及配置"><a href="#Linux系统中Centos安装及配置" class="headerlink" title="Linux系统中Centos安装及配置"></a>Linux系统中Centos安装及配置</h1><p>最近开始学大数据，在VM ware虚拟环境在安装Centos 6.x系统。下面是相关的一些配置。</p>
+<h2 id="虚拟机设置"><a href="#虚拟机设置" class="headerlink" title="虚拟机设置"></a>虚拟机设置</h2><p>1.打开编辑虚拟机设置，设置相关设备（内存 处理器 硬盘）。网络连接使用NAT模式，用于共享主机的ip地址。</p>
+<p><img src="C:\Users\whc\Desktop\md\images\1.png" alt="1"></p>
+<p>2.配置虚拟网络编辑器。打开VM ware软件上方的编辑选项点击进入。修改VMnet 8 适配器网段地址以及在NAT设置中设置网关。</p>
+<p><img src="C:\Users\whc\Desktop\md\images\2.jpg" alt="2"></p>
+<p><img src="C:\Users\whc\Desktop\md\images\3.png" alt="3"></p>
+<h2 id="基本环境的配置"><a href="#基本环境的配置" class="headerlink" title="基本环境的配置"></a>基本环境的配置</h2><h3 id="修改主机名"><a href="#修改主机名" class="headerlink" title="修改主机名"></a>修改主机名</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">查看主机名  </span><br><span class="line"></span><br><span class="line">		在命令行界面输入 hostname</span><br><span class="line"></span><br><span class="line">临时修改</span><br><span class="line"></span><br><span class="line">		hostname bigdata-training01.hd.com</span><br><span class="line"></span><br><span class="line">永久修改 ![<span class="number">4</span>](C:\Users\whc\Desktop\md\images\<span class="number">4</span>.png)![<span class="number">4</span>](C:\Users\whc\Desktop\md\images\<span class="number">4</span>.png)</span><br><span class="line"></span><br><span class="line">		/etc/sysconfig/network   如果没有即时生效 命令行输入 init <span class="number">6</span> 重启虚拟机</span><br><span class="line">		vim /etc/sysconfig/network</span><br></pre></td></tr></table></figure>
+<h3 id="配置网络"><a href="#配置网络" class="headerlink" title="配置网络"></a>配置网络</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">配置IP地址</span><br><span class="line"></span><br><span class="line">			IP地址:必须与虚拟机NAT模式下分配的IP地址同网段</span><br><span class="line"></span><br><span class="line">			子网掩码:必须与虚拟机NAT模式下分配的IP地址的子网掩码相同</span><br><span class="line"></span><br><span class="line">配置连接外网</span><br><span class="line"></span><br><span class="line">			网关：必须使用NAT模式提供网关，一般默认是.<span class="number">2</span></span><br><span class="line"></span><br><span class="line">			DNS：域名解析服务器，建议与网关地址一致，也可以使用一些公共的DNS地址（<span class="number">8.8</span>.8.8）</span><br><span class="line"></span><br><span class="line">配置网络方式</span><br><span class="line"></span><br><span class="line">			<span class="number">1</span>.图形化界面配置(比较方便)</span><br><span class="line"></span><br><span class="line">			<span class="number">2</span>.命令行方式：修改网卡配置文件</span><br><span class="line"> </span><br><span class="line">			 vi /etc/sysconfig/networkscripts/ifcfg-eth0</span><br><span class="line"></span><br><span class="line">			修改完成后重启网络服务 </span><br><span class="line"></span><br><span class="line">			service network restart</span><br></pre></td></tr></table></figure>
+<p>这里使用图形化界面配置</p>
+<p><img src="C:\Users\whc\Desktop\md\images\4.png" alt="4"></p>
+<h3 id="网络映射（局域网内）"><a href="#网络映射（局域网内）" class="headerlink" title="网络映射（局域网内）"></a>网络映射（局域网内）</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">修改配置文件：/etc/hosts</span><br><span class="line">在文件里加入ip地址 和 对应设置的域名</span><br><span class="line">修改windows的本地映射，这样就可以通过本机可以ping通虚拟机的域名 主机名</span><br><span class="line">	C:\Windows\System32\drivers\etc\hosts</span><br><span class="line">注意，如果host修改失败，可以先copy到桌面，修改完然后替换原有host文件</span><br></pre></td></tr></table></figure>
+<h3 id="添加删除用户"><a href="#添加删除用户" class="headerlink" title="添加删除用户"></a>添加删除用户</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">useradd username</span><br><span class="line">passwd username #给用户设置密码</span><br><span class="line">userdel username</span><br><span class="line">                                    （要切换到root下进行操作）</span><br></pre></td></tr></table></figure>
+<h3 id="配置IP地址和主机名映射"><a href="#配置IP地址和主机名映射" class="headerlink" title="配置IP地址和主机名映射"></a>配置IP地址和主机名映射</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">vim /etc/hosts</span><br><span class="line">进入后在行尾添加 ip地址  域名  主机名   <span class="number">3</span>个值</span><br></pre></td></tr></table></figure>
+<p>​    </p>
+<h3 id="安装JDK"><a href="#安装JDK" class="headerlink" title="安装JDK"></a>安装JDK</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1</span>、规划Linux系统目录结构</span><br><span class="line">    以系统 /opt 目录为主安装软件包</span><br><span class="line">    /opt </span><br><span class="line">        /datas </span><br><span class="line">            测试数据 </span><br><span class="line">        /softwares</span><br><span class="line">            软件包</span><br><span class="line">        /modules</span><br><span class="line">            软件安装目录</span><br><span class="line">        /tools </span><br><span class="line">            开发IDE及工具</span><br><span class="line">        </span><br><span class="line"><span class="number">2</span>、安装JDK </span><br><span class="line">    -a. 卸载系统自带的OpenJDK</span><br><span class="line">        查看安装的JDK</span><br><span class="line">        $ sudo rpm -qa|grep java</span><br><span class="line">        卸载JDK </span><br><span class="line">        $ sudo rpm -e --nodeps java-<span class="number">1.6</span>.0-openjdk-<span class="number">1.6</span>.0.0-<span class="number">1.50</span>.1.11.5.el6_3.x86_64 tzdata-java-<span class="number">2012</span>j-<span class="number">1</span>.el6.noarch java-<span class="number">1.7</span>.0-openjdk-<span class="number">1.7</span>.0.9-<span class="number">2.3</span>.4.1.el6_3.x86_64</span><br><span class="line">    -b. Linux系统自带上传下载软件</span><br><span class="line">        $ sudo yum install -y lrzsz</span><br><span class="line">        其中</span><br><span class="line">            rz:  上传文件</span><br><span class="line">            sz:  表示下载</span><br><span class="line">    -c. 安装JDK</span><br><span class="line">        在Linux安装JDK类似于Windows绿色软件的安装，直接解压，配置环境变量即可。</span><br><span class="line">        - 使用rz上传软件包至/opt/softwares</span><br><span class="line">        - 解压到/opt/modules</span><br><span class="line">            $ chmod u+x jdk-8u91-linux-x64.tar.gz  #给该压缩包添加执行权限</span><br><span class="line">            $ tar -zxf jdk-<span class="number">8</span>u91-linux-x64.tar.gz -C /opt/modules/</span><br><span class="line">        - 配置系统环境变量</span><br><span class="line">            $ sudo vim /etc/profile</span><br><span class="line">            在文件最后增加如下内容：</span><br><span class="line">                # JAVA HOME</span><br><span class="line">                export JAVA_HOME=/opt/modules/jdk1.8.0_91</span><br><span class="line">                export PATH=$&#123;PATH&#125;:$&#123;JAVA_HOME&#125;/bin</span><br><span class="line">            使其生效</span><br><span class="line">            $ source /etc/profile </span><br><span class="line">            验证</span><br><span class="line">            $ java -version</span><br></pre></td></tr></table></figure>
 
       
     </div>
@@ -403,7 +414,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/hexo/" rel="tag"># hexo</a>
+            <a href="/tags/linux-centos/" rel="tag"># linux centos</a>
           
         </div>
       
@@ -416,15 +427,15 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
+              <a href="/2018/04/22/Redis 5大数据类型/" rel="next" title="Redis常用数据类型">
+                <i class="fa fa-chevron-left"></i> Redis常用数据类型
+              </a>
+            
           </div>
 
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/04/22/Redis 5大数据类型/" rel="prev" title="Redis常用数据类型">
-                Redis常用数据类型 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -560,7 +571,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Quick-Start"><span class="nav-number">1.</span> <span class="nav-text">Quick Start</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Create-a-new-post"><span class="nav-number">1.1.</span> <span class="nav-text">Create a new post</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Run-server"><span class="nav-number">1.2.</span> <span class="nav-text">Run server</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Generate-static-files"><span class="nav-number">1.3.</span> <span class="nav-text">Generate static files</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Deploy-to-remote-sites"><span class="nav-number">1.4.</span> <span class="nav-text">Deploy to remote sites</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Linux系统中Centos安装及配置"><span class="nav-number">1.</span> <span class="nav-text">Linux系统中Centos安装及配置</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#虚拟机设置"><span class="nav-number">1.1.</span> <span class="nav-text">虚拟机设置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#基本环境的配置"><span class="nav-number">1.2.</span> <span class="nav-text">基本环境的配置</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#修改主机名"><span class="nav-number">1.2.1.</span> <span class="nav-text">修改主机名</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#配置网络"><span class="nav-number">1.2.2.</span> <span class="nav-text">配置网络</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#网络映射（局域网内）"><span class="nav-number">1.2.3.</span> <span class="nav-text">网络映射（局域网内）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#添加删除用户"><span class="nav-number">1.2.4.</span> <span class="nav-text">添加删除用户</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#配置IP地址和主机名映射"><span class="nav-number">1.2.5.</span> <span class="nav-text">配置IP地址和主机名映射</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#安装JDK"><span class="nav-number">1.2.6.</span> <span class="nav-text">安装JDK</span></a></li></ol></li></ol></li></ol></div>
             
 
           </div>
