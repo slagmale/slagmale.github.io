@@ -79,19 +79,19 @@
 
 
 
-<meta name="description" content="存储格式">
+<meta name="description" content="##存储格式">
 <meta name="keywords" content="redis">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Redis5大常用数据类型">
 <meta property="og:url" content="http://slagmale.github.io/2018/04/22/Redis 5大数据类型/index.html">
 <meta property="og:site_name" content="slagmale">
-<meta property="og:description" content="存储格式">
+<meta property="og:description" content="##存储格式">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://images2018.cnblogs.com/blog/1299285/201804/1299285-20180423214523351-1519836149.png">
-<meta property="og:updated_time" content="2018-04-23T14:09:42.577Z">
+<meta property="og:updated_time" content="2018-04-23T14:11:32.593Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Redis5大常用数据类型">
-<meta name="twitter:description" content="存储格式">
+<meta name="twitter:description" content="##存储格式">
 <meta name="twitter:image" content="https://images2018.cnblogs.com/blog/1299285/201804/1299285-20180423214523351-1519836149.png">
 
 
@@ -379,7 +379,8 @@
       
 
       
-        <h2 id="存储格式"><a href="#存储格式" class="headerlink" title="存储格式"></a>存储格式</h2><p> <img src="https://images2018.cnblogs.com/blog/1299285/201804/1299285-20180423214523351-1519836149.png" alt="img"></p>
+        <p>##存储格式</p>
+<p> <img src="https://images2018.cnblogs.com/blog/1299285/201804/1299285-20180423214523351-1519836149.png" alt="img"></p>
 <a id="more"></a>
 <h2 id="基本用法"><a href="#基本用法" class="headerlink" title="基本用法"></a>基本用法</h2><p>通过Jedis(封装了redis的Java客户端)对redis进行操作。</p>
 <h3 id="Jedis工具类"><a href="#Jedis工具类" class="headerlink" title="Jedis工具类"></a>Jedis工具类</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">JedisPoolUtil</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> JedisPool pool = <span class="keyword">null</span>;</span><br><span class="line">    <span class="keyword">static</span> &#123;</span><br><span class="line">        <span class="comment">//加载配置文件</span></span><br><span class="line">        InputStream in = JedisPoolUtil.class.getClassLoader().getResourceAsStream(<span class="string">"redis.properties"</span>);</span><br><span class="line">        Properties pro = <span class="keyword">new</span> Properties();</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            pro.load(in);</span><br><span class="line">        &#125; <span class="keyword">catch</span> (IOException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">            System.out.println(<span class="string">"加载文件失败"</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        JedisPoolConfig poolConfig = <span class="keyword">new</span> JedisPoolConfig();</span><br><span class="line">        <span class="comment">//最大连接数</span></span><br><span class="line">        poolConfig.setMaxTotal(Integer.parseInt( pro.get(<span class="string">"redis.maxTotal"</span>).toString()));</span><br><span class="line">        <span class="comment">//最大空闲连接数</span></span><br><span class="line">        poolConfig.setMaxIdle(Integer.parseInt( pro.get(<span class="string">"redis.maxIdle"</span>).toString()));</span><br><span class="line">        <span class="comment">//最小空闲连接数</span></span><br><span class="line">        poolConfig.setMinIdle(Integer.parseInt( pro.get(<span class="string">"redis.minIdle"</span>).toString()));</span><br><span class="line">        pool = <span class="keyword">new</span> JedisPool(poolConfig, pro.get(<span class="string">"redis.url"</span>).toString(),Integer.parseInt( pro.get(<span class="string">"redis.port"</span>)</span><br><span class="line">                .toString()));</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> Jedis <span class="title">getJedis</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">return</span> pool.getResource();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">release</span><span class="params">(Jedis jedis)</span></span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(<span class="keyword">null</span> != jedis)&#123;</span><br><span class="line">            jedis.close();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
@@ -571,7 +572,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#存储格式"><span class="nav-number">1.</span> <span class="nav-text">存储格式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#基本用法"><span class="nav-number">2.</span> <span class="nav-text">基本用法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Jedis工具类"><span class="nav-number">2.1.</span> <span class="nav-text">Jedis工具类</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Set"><span class="nav-number">2.2.</span> <span class="nav-text">Set</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#SortedSet"><span class="nav-number">2.3.</span> <span class="nav-text">SortedSet</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#基本用法"><span class="nav-number">1.</span> <span class="nav-text">基本用法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Jedis工具类"><span class="nav-number">1.1.</span> <span class="nav-text">Jedis工具类</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Set"><span class="nav-number">1.2.</span> <span class="nav-text">Set</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#SortedSet"><span class="nav-number">1.3.</span> <span class="nav-text">SortedSet</span></a></li></ol></li></ol></div>
             
 
           </div>
