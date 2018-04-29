@@ -379,15 +379,10 @@
 
       
         
-          <p>##1.网站基本指标的几个概念</p>
-<p>####PV: page view   浏览量</p>
-<p>页面的浏览次数，用户每打开一次页面就记录一次。</p>
-<p>####UV:unique visitor   独立访客数</p>
-<p>一天内访问某站点的人数（以cookie为例） 但是如果用户把浏览器cookie给删了之后再次访问会影响记录。</p>
-<p>####VV: visit view 访客的访问次数</p>
-<p>记录所有访客一天内访问了多少次网站，访客完成访问直到浏览器关闭算一次。</p>
-<p>####IP：独立ip数</p>
-<p>指一天内使用不同ip地址的用户访问网站的数量。</p>
+          <h2 id="1-网站基本指标的几个概念"><a href="#1-网站基本指标的几个概念" class="headerlink" title="1.网站基本指标的几个概念"></a>1.网站基本指标的几个概念</h2><h4 id="PV-page-view-浏览量"><a href="#PV-page-view-浏览量" class="headerlink" title="PV: page view   浏览量"></a>PV: page view   浏览量</h4><p>页面的浏览次数，用户每打开一次页面就记录一次。</p>
+<h4 id="UV-unique-visitor-独立访客数"><a href="#UV-unique-visitor-独立访客数" class="headerlink" title="UV:unique visitor   独立访客数"></a>UV:unique visitor   独立访客数</h4><p>一天内访问某站点的人数（以cookie为例） 但是如果用户把浏览器cookie给删了之后再次访问会影响记录。</p>
+<h4 id="VV-visit-view-访客的访问次数"><a href="#VV-visit-view-访客的访问次数" class="headerlink" title="VV: visit view 访客的访问次数"></a>VV: visit view 访客的访问次数</h4><p>记录所有访客一天内访问了多少次网站，访客完成访问直到浏览器关闭算一次。</p>
+<h4 id="IP：独立ip数"><a href="#IP：独立ip数" class="headerlink" title="IP：独立ip数"></a>IP：独立ip数</h4><p>指一天内使用不同ip地址的用户访问网站的数量。</p>
 <h2 id="2-编写MapReduce编程模板"><a href="#2-编写MapReduce编程模板" class="headerlink" title="2.编写MapReduce编程模板"></a>2.编写MapReduce编程模板</h2>
           <!--noindex-->
           <div class="post-button text-center">
@@ -538,7 +533,7 @@
 <p>Map负责过滤分发，reduce归并整理，从map输出到reduce输入就是shuffle过程。</p>
 <h2 id="实现的功能"><a href="#实现的功能" class="headerlink" title="实现的功能"></a>实现的功能</h2><h3 id="分区"><a href="#分区" class="headerlink" title="分区"></a>分区</h3><p>决定当前key交给哪个reduce处理</p>
 <p>默认：按照key的hash值对reduce的个数取余进行分区</p>
-<p><img src="C:\Users\whc\AppData\Local\Temp\1524898951083.png" alt="1524898951083"></p>
+<p><img src="https://images2018.cnblogs.com/blog/1299285/201804/1299285-20180429141653144-1940705159.png" alt=""></p>
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2018/04/29/shuffle过程详解/#more" rel="contents">
