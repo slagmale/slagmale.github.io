@@ -79,20 +79,20 @@
 
 
 
-<meta name="description" content="在我们深入了解Secondary NameNode之前，我们先来看看NameNode是做什么的。 NameNodeNameNode主要是用来保存HDFS的元数据信息，比如命名空间信息，块信息等。当它运行的时候，这些信息是存在内存中的。但是这些信息也可以持久化到磁盘上。  上面的这张图片展示了NameNode怎么把元数据保存到磁盘上的。这里有两个不同的文件： fsimage - 它是在NameNod">
+<meta name="description" content="在我们深入了解Secondary NameNode之前，我们先来看看NameNode是做什么的。">
 <meta name="keywords" content="hadoop namenode">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Hadoop中的Secondary NameNode">
 <meta property="og:url" content="http://slagmale.github.io/2018/04/29/Hadoop中的Secondary NameNode/index.html">
 <meta property="og:site_name" content="slagmale">
-<meta property="og:description" content="在我们深入了解Secondary NameNode之前，我们先来看看NameNode是做什么的。 NameNodeNameNode主要是用来保存HDFS的元数据信息，比如命名空间信息，块信息等。当它运行的时候，这些信息是存在内存中的。但是这些信息也可以持久化到磁盘上。  上面的这张图片展示了NameNode怎么把元数据保存到磁盘上的。这里有两个不同的文件： fsimage - 它是在NameNod">
+<meta property="og:description" content="在我们深入了解Secondary NameNode之前，我们先来看看NameNode是做什么的。">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://img-blog.csdn.net/20160216153044620">
 <meta property="og:image" content="http://img.blog.csdn.net/20150104202517828">
-<meta property="og:updated_time" content="2018-04-29T07:45:30.489Z">
+<meta property="og:updated_time" content="2018-04-29T07:47:50.795Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Hadoop中的Secondary NameNode">
-<meta name="twitter:description" content="在我们深入了解Secondary NameNode之前，我们先来看看NameNode是做什么的。 NameNodeNameNode主要是用来保存HDFS的元数据信息，比如命名空间信息，块信息等。当它运行的时候，这些信息是存在内存中的。但是这些信息也可以持久化到磁盘上。  上面的这张图片展示了NameNode怎么把元数据保存到磁盘上的。这里有两个不同的文件： fsimage - 它是在NameNod">
+<meta name="twitter:description" content="在我们深入了解Secondary NameNode之前，我们先来看看NameNode是做什么的。">
 <meta name="twitter:image" content="https://img-blog.csdn.net/20160216153044620">
 
 
@@ -381,6 +381,7 @@
 
       
         <p>在我们深入了解Secondary NameNode之前，我们先来看看NameNode是做什么的。</p>
+<a id="more"></a>
 <h2 id="NameNode"><a href="#NameNode" class="headerlink" title="NameNode"></a>NameNode</h2><p>NameNode主要是用来保存HDFS的元数据信息，比如命名空间信息，块信息等。当它运行的时候，这些信息是存在内存中的。但是这些信息也可以持久化到磁盘上。</p>
 <p><img src="https://img-blog.csdn.net/20160216153044620" alt="这里写图片描述"></p>
 <p>上面的这张图片展示了NameNode怎么把元数据保存到磁盘上的。这里有两个不同的文件：</p>
