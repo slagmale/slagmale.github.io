@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="hadoop，namenode," />
+  <meta name="keywords" content="Hexo, NexT" />
 
 
 
@@ -79,21 +79,16 @@
 
 
 
-<meta name="description" content="在我们深入了解Secondary NameNode之前，我们先来看看NameNode是做什么的。 NameNodeNameNode主要是用来保存HDFS的元数据信息，比如命名空间信息，块信息等。当它运行的时候，这些信息是存在内存中的。但是这些信息也可以持久化到磁盘上。">
-<meta name="keywords" content="hadoop，namenode">
-<meta property="og:type" content="article">
-<meta property="og:title" content="Hadoop中的Secondary NameNode">
-<meta property="og:url" content="http://slagmale.github.io/2018/04/29/Hadoop中的Secondary NameNode/index.html">
+<meta name="description" content="一名舟山小次老">
+<meta property="og:type" content="website">
+<meta property="og:title" content="slagmale">
+<meta property="og:url" content="http://slagmale.github.io/categories/MapReduce/index.html">
 <meta property="og:site_name" content="slagmale">
-<meta property="og:description" content="在我们深入了解Secondary NameNode之前，我们先来看看NameNode是做什么的。 NameNodeNameNode主要是用来保存HDFS的元数据信息，比如命名空间信息，块信息等。当它运行的时候，这些信息是存在内存中的。但是这些信息也可以持久化到磁盘上。">
+<meta property="og:description" content="一名舟山小次老">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="https://img-blog.csdn.net/20160216153044620">
-<meta property="og:image" content="http://img.blog.csdn.net/20150104202517828">
-<meta property="og:updated_time" content="2018-04-29T08:15:10.053Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Hadoop中的Secondary NameNode">
-<meta name="twitter:description" content="在我们深入了解Secondary NameNode之前，我们先来看看NameNode是做什么的。 NameNodeNameNode主要是用来保存HDFS的元数据信息，比如命名空间信息，块信息等。当它运行的时候，这些信息是存在内存中的。但是这些信息也可以持久化到磁盘上。">
-<meta name="twitter:image" content="https://img-blog.csdn.net/20160216153044620">
+<meta name="twitter:title" content="slagmale">
+<meta name="twitter:description" content="一名舟山小次老">
 
 
 
@@ -123,13 +118,13 @@
 
 
 
-  <link rel="canonical" href="http://slagmale.github.io/2018/04/29/Hadoop中的Secondary NameNode/"/>
+  <link rel="canonical" href="http://slagmale.github.io/categories/MapReduce/"/>
 
 
 
 
 
-  <title>Hadoop中的Secondary NameNode | slagmale</title>
+  <title>分类: MapReduce | slagmale</title>
   
 
 
@@ -148,7 +143,7 @@
     
   
 
-  <div class="container sidebar-position-left page-post-detail">
+  <div class="container sidebar-position-left ">
     <div class="headband"></div>
    <a href="https://github.com/slagmale"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_green_007200.png" alt="Fork me on GitHub"></a>
 
@@ -277,190 +272,55 @@
           <div id="content" class="content">
             
 
-  <div id="posts" class="posts-expand">
-    
+  
+  
+  
+  <div class="post-block category">
 
-  
+    <div id="posts" class="posts-collapse">
+      <div class="collection-title">
+        <h1>MapReduce<small>分类</small>
+        </h1>
+      </div>
 
-  
-  
-  
+      
+        
 
   <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://slagmale.github.io/2018/04/29/Hadoop中的Secondary NameNode/">
+    <header class="post-header">
 
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="汪Vely">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/love.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="slagmale">
-    </span>
-
-    
-      <header class="post-header">
-
+      <h2 class="post-title">
         
+            <a class="post-title-link" href="/2018/04/30/MapReduce-编程模板编写【分析网站基本指标UV】程序/" itemprop="url">
+              
+                <span itemprop="name">MapReduce 编程模板编写【分析网站基本指标UV】程序</span>
+              
+            </a>
         
-          <h1 class="post-title" itemprop="name headline">Hadoop中的Secondary NameNode</h1>
-        
+      </h2>
 
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-04-29T15:43:30+08:00">
-                2018-04-29
-              </time>
-            
+      <div class="post-meta">
+        <time class="post-time" itemprop="dateCreated"
+              datetime="2018-04-30T14:47:02+08:00"
+              content="2018-04-30" >
+          04-30
+        </time>
+      </div>
 
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Hadoop/" itemprop="url" rel="index">
-                    <span itemprop="name">Hadoop</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        <p>在我们深入了解Secondary NameNode之前，我们先来看看NameNode是做什么的。</p>
-<h2 id="NameNode"><a href="#NameNode" class="headerlink" title="NameNode"></a>NameNode</h2><p>NameNode主要是用来保存HDFS的元数据信息，比如命名空间信息，块信息等。当它运行的时候，这些信息是存在内存中的。但是这些信息也可以持久化到磁盘上。</p>
-<p><img src="https://img-blog.csdn.net/20160216153044620" alt="这里写图片描述"></p>
-<a id="more"></a>
-<p>上面的这张图片展示了NameNode怎么把元数据保存到磁盘上的。这里有两个不同的文件：</p>
-<p>fsimage - 它是在NameNode启动时对整个文件系统的快照<br>edit logs - 它是在NameNode启动后，对文件系统的改动序列<br>只有在NameNode重启时，edit logs才会合并到fsimage文件中，从而得到一个文件系统的最新快照。但是在产品集群中NameNode是很少重启的，这也意味着当NameNode运行了很长时间后，edit logs文件会变得很大。在这种情况下就会出现下面一些问题：</p>
-<p>edit logs文件会变的很大，怎么去管理这个文件是一个挑战。<br>NameNode的重启会花费很长时间，因为有很多改动[笔者注:在edit logs中]要合并到fsimage文件上。<br>如果NameNode挂掉了，那我们就丢失了很多改动因为此时的fsimage文件非常旧。<br>因此为了克服这个问题，我们需要一个易于管理的机制来帮助我们减小edit logs文件的大小和得到一个最新的fsimage文件，这样也会减小在NameNode上的压力。这跟Windows的恢复点是非常像的，Windows的恢复点机制允许我们对OS进行快照，这样当系统发生问题时，我们能够回滚到最新的一次恢复点上。</p>
-<p>现在我们明白了NameNode的功能和所面临的挑战 - 保持文件系统最新的元数据。那么，这些跟Secondary NameNode又有什么关系呢？</p>
-<h2 id="Secondary-NameNode"><a href="#Secondary-NameNode" class="headerlink" title="Secondary NameNode"></a>Secondary NameNode</h2><p>其实SecondaryNameNode是hadoop1.x中HDFS HA的一个解决方案，下面我们来看一下SecondaryNameNode工作的流程，如下图：</p>
-<p><img src="http://img.blog.csdn.net/20150104202517828" alt="img"></p>
-<p><strong>1.</strong>NameNode管理着元数据信息，元数据信息会定期的刷到磁盘中，其中的两个文件是edits即操作日志文件和fsimage即元数据镜像文件，新的操作日志不会立即与fsimage进行合并，也不会刷到NameNode的内存中，而是会先写到edits中(因为合并需要消耗大量的资源)。当edits文件的大小达到一个临界值(默认是64MB)或者间隔一段时间(默认是1小时)的时候checkpoint会触发SecondaryNameNode进行工作。</p>
-<p><strong>2.</strong>当触发一个checkpoint操作时，NameNode会生成一个新的edits即上图中的edits.new文件，同时SecondaryNameNode会将edits文件和fsimage复制到本地。</p>
-<p><strong>3.</strong>SecondaryNameNode将本地的fsimage文件加载到内存中，然后再与edits文件进行合并生成一个新的fsimage文件即上图中的Fsimage.ckpt文件。</p>
-<p><strong>4.</strong>SecondaryNameNode将新生成的Fsimage.ckpt文件复制到NameNode节点。</p>
-<p><strong>5.</strong>在NameNode结点的edits.new文件和Fsimage.ckpt文件会替换掉原来的edits文件和fsimage文件，至此，刚好是一个轮回即在NameNode中又是edits和fsimage文件了。</p>
-<p><strong>6.</strong>等待下一次checkpoint触发SecondaryNameNode进行工作，一直这样循环操作。</p>
-<p><strong>注：checkpoint触发的条件可以在core-site.xml文件中进行配置，如下：</strong></p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">&lt;property&gt;  </span><br><span class="line">  &lt;name&gt;fs.checkpoint.period&lt;/name&gt;  </span><br><span class="line">  &lt;value&gt;3600&lt;/value&gt;  </span><br><span class="line">  &lt;description&gt;</span><br><span class="line">  		The number of seconds between two periodic checkpoints.  </span><br><span class="line">  &lt;/description&gt;  </span><br><span class="line">&lt;/property&gt;  </span><br><span class="line">  </span><br><span class="line">&lt;property&gt;  </span><br><span class="line">  &lt;name&gt;fs.checkpoint.size&lt;/name&gt;  </span><br><span class="line">   &lt;value&gt;67108864&lt;/value&gt;  </span><br><span class="line">   &lt;description&gt;</span><br><span class="line">   		<span class="function">The size of the current edit <span class="title">log</span> <span class="params">(in bytes)</span> that triggers  </span></span><br><span class="line"><span class="function">        a periodic checkpoint even <span class="keyword">if</span> the fs.checkpoint.period hasn't expired.  </span></span><br><span class="line"><span class="function">   &lt;/description&gt;  </span></span><br><span class="line"><span class="function"> &lt;/property&gt;</span></span><br></pre></td></tr></table></figure>
-
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-        <div class="post-tags">
-          
-            <a href="/tags/hadoop，namenode/" rel="tag"># hadoop，namenode</a>
-          
-        </div>
-      
-
-      
-      
-      
-
-      
-        <div class="post-nav">
-          <div class="post-nav-next post-nav-item">
-            
-              <a href="/2018/04/23/Linux系统安装/" rel="next" title="Linux系统中Centos安装及配置">
-                <i class="fa fa-chevron-left"></i> Linux系统中Centos安装及配置
-              </a>
-            
-          </div>
-
-          <span class="post-nav-divider"></span>
-
-          <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/04/29/shuffle过程详解/" rel="prev" title="MapReduce中shuffle过程详解">
-                MapReduce中shuffle过程详解 <i class="fa fa-chevron-right"></i>
-              </a>
-            
-          </div>
-        </div>
-      
-
-      
-      
-    </footer>
-  </div>
-  
-  
-  
+    </header>
   </article>
 
 
-
-    <div class="post-spread">
       
     </div>
+
   </div>
+  
+  
+  
+
+  
+
 
 
           </div>
@@ -468,10 +328,6 @@
 
 
           
-
-  
-
-
 
         </div>
         
@@ -492,17 +348,8 @@
       
 
       
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
-            文章目录
-          </li>
-          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
-            站点概览
-          </li>
-        </ul>
-      
 
-      <section class="site-overview-wrap sidebar-panel">
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -521,7 +368,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">6</span>
+                  <span class="site-state-item-count">2</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -532,7 +379,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-count">2</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -543,7 +390,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-count">2</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -566,22 +413,6 @@
         </div>
       </section>
 
-      
-      <!--noindex-->
-        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc">
-
-            
-              
-            
-
-            
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#NameNode"><span class="nav-number">1.</span> <span class="nav-text">NameNode</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Secondary-NameNode"><span class="nav-number">2.</span> <span class="nav-text">Secondary NameNode</span></a></li></ol></div>
-            
-
-          </div>
-        </section>
-      <!--/noindex-->
       
 
       
@@ -717,10 +548,6 @@
 
 
   
-  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
-<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
-
-
 
   
 

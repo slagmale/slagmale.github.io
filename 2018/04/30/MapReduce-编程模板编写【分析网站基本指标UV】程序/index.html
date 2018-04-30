@@ -83,17 +83,17 @@
 <meta name="keywords" content="MapReduce">
 <meta property="og:type" content="article">
 <meta property="og:title" content="MapReduce 编程模板编写【分析网站基本指标UV】程序">
-<meta property="og:url" content="http://slagmale.github.io/2018/04/29/MapReduce 编程模板编写【分析网站基本指标UV】程序/index.html">
+<meta property="og:url" content="http://slagmale.github.io/2018/04/30/MapReduce-编程模板编写【分析网站基本指标UV】程序/index.html">
 <meta property="og:site_name" content="slagmale">
 <meta property="og:description" content="1.网站基本指标的几个概念PV: page view   浏览量页面的浏览次数，用户每打开一次页面就记录一次。 UV:unique visitor   独立访客数一天内访问某站点的人数（以cookie为例） 但是如果用户把浏览器cookie给删了之后再次访问会影响记录。 VV: visit view 访客的访问次数记录所有访客一天内访问了多少次网站，访客完成访问直到浏览器关闭算一次。 IP：独立i">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="https://images2018.cnblogs.com/blog/1299285/201804/1299285-20180429200041930-1341198816.png">
-<meta property="og:image" content="https://images2018.cnblogs.com/blog/1299285/201804/1299285-20180429200030752-860098804.png">
-<meta property="og:updated_time" content="2018-04-30T02:32:28.928Z">
+<meta property="og:image" content="http://slagmale.github.io/2018/04/30/MapReduce-编程模板编写【分析网站基本指标UV】程序/1.png">
+<meta property="og:image" content="http://slagmale.github.io/2018/04/30/MapReduce-编程模板编写【分析网站基本指标UV】程序/2.png">
+<meta property="og:updated_time" content="2018-04-30T06:55:47.114Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="MapReduce 编程模板编写【分析网站基本指标UV】程序">
 <meta name="twitter:description" content="1.网站基本指标的几个概念PV: page view   浏览量页面的浏览次数，用户每打开一次页面就记录一次。 UV:unique visitor   独立访客数一天内访问某站点的人数（以cookie为例） 但是如果用户把浏览器cookie给删了之后再次访问会影响记录。 VV: visit view 访客的访问次数记录所有访客一天内访问了多少次网站，访客完成访问直到浏览器关闭算一次。 IP：独立i">
-<meta name="twitter:image" content="https://images2018.cnblogs.com/blog/1299285/201804/1299285-20180429200041930-1341198816.png">
+<meta name="twitter:image" content="http://slagmale.github.io/2018/04/30/MapReduce-编程模板编写【分析网站基本指标UV】程序/1.png">
 
 
 
@@ -123,7 +123,7 @@
 
 
 
-  <link rel="canonical" href="http://slagmale.github.io/2018/04/29/MapReduce 编程模板编写【分析网站基本指标UV】程序/"/>
+  <link rel="canonical" href="http://slagmale.github.io/2018/04/30/MapReduce-编程模板编写【分析网站基本指标UV】程序/"/>
 
 
 
@@ -291,7 +291,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://slagmale.github.io/2018/04/29/MapReduce 编程模板编写【分析网站基本指标UV】程序/">
+    <link itemprop="mainEntityOfPage" href="http://slagmale.github.io/2018/04/30/MapReduce-编程模板编写【分析网站基本指标UV】程序/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="汪Vely">
@@ -320,8 +320,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-04-29T15:55:26+08:00">
-                2018-04-29
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-04-30T14:47:02+08:00">
+                2018-04-30
               </time>
             
 
@@ -343,8 +343,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Hadoop/" itemprop="url" rel="index">
-                    <span itemprop="name">Hadoop</span>
+                  <a href="/categories/MapReduce/" itemprop="url" rel="index">
+                    <span itemprop="name">MapReduce</span>
                   </a>
                 </span>
 
@@ -411,19 +411,18 @@
 <h2 id="4-MapReduce执行过程理解"><a href="#4-MapReduce执行过程理解" class="headerlink" title="4.MapReduce执行过程理解"></a>4.MapReduce执行过程理解</h2><h3 id="input：默认从HDFS读取数据"><a href="#input：默认从HDFS读取数据" class="headerlink" title="input：默认从HDFS读取数据"></a>input：默认从HDFS读取数据</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Path inPath = <span class="keyword">new</span> Path(args[<span class="number">0</span>]);</span><br><span class="line">FileInputFormat.setInputPaths(job,inPath);</span><br></pre></td></tr></table></figure>
 <p>将每一行数据转换为key-value（分割），这一步由MapReduce框架自动完成。</p>
 <p><strong>输出行的偏移量和行的内容</strong></p>
-<p><img src="https://images2018.cnblogs.com/blog/1299285/201804/1299285-20180429200041930-1341198816.png" alt=""></p>
+<p><img src="/2018/04/30/MapReduce-编程模板编写【分析网站基本指标UV】程序/1.png" alt=""></p>
 <h3 id="mapper-分词输出"><a href="#mapper-分词输出" class="headerlink" title="mapper:  分词输出"></a>mapper:  分词输出</h3><p>数据过滤，数据补全，字段格式化</p>
 <p>输入：input的输出</p>
 <p>将分割好的&lt;key,value&gt;对交给用户定义的map方法进行处理，生成新的&lt;key,value&gt;对。</p>
 <p>一行调用一次map方法。</p>
 <p>统计word中的map：</p>
-<p><img src="https://images2018.cnblogs.com/blog/1299285/201804/1299285-20180429200030752-860098804.png" alt=""></p>
+<p><img src="/2018/04/30/MapReduce-编程模板编写【分析网站基本指标UV】程序/2.png" alt=""></p>
 <h3 id="shuffle-分区，分组，排序"><a href="#shuffle-分区，分组，排序" class="headerlink" title="shuffle: 分区，分组，排序"></a>shuffle: 分区，分组，排序</h3><p>输出：</p>
-<p>&lt;Bye,1&gt;</p>
-<p>&lt;Hello,1&gt;</p>
-<p>&lt;World,1,1&gt;</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;Bye,<span class="number">1</span>&gt;</span><br><span class="line"></span><br><span class="line">&lt;Hello,<span class="number">1</span>&gt;</span><br><span class="line"></span><br><span class="line">&lt;World,<span class="number">1</span>,<span class="number">1</span>&gt;</span><br></pre></td></tr></table></figure>
 <p>得到map输出的&lt;key,value&gt;对，Mapper会将他们按照key进行排序，得到mapper的最终输出结果。</p>
 <h3 id="Reduce-：每一条Keyvalue调用一次reduce方法"><a href="#Reduce-：每一条Keyvalue调用一次reduce方法" class="headerlink" title="Reduce ：每一条Keyvalue调用一次reduce方法"></a>Reduce ：每一条Keyvalue调用一次reduce方法</h3><p>将相同Key的List<value>，进行相加求和</value></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;Bye,<span class="number">1</span>&gt;</span><br><span class="line"></span><br><span class="line">&lt;Hello,<span class="number">1</span>&gt;</span><br><span class="line"></span><br><span class="line">&lt;World,<span class="number">2</span>&gt;</span><br></pre></td></tr></table></figure>
 <h3 id="output：将reduce输出写入hdfs"><a href="#output：将reduce输出写入hdfs" class="headerlink" title="output：将reduce输出写入hdfs"></a>output：将reduce输出写入hdfs</h3>
       
     </div>
@@ -454,8 +453,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/04/29/shuffle过程详解/" rel="next" title="MapReduce中shuffle过程详解">
-                <i class="fa fa-chevron-left"></i> MapReduce中shuffle过程详解
+              <a href="/2018/04/21/hello-world/" rel="next" title="Hello World">
+                <i class="fa fa-chevron-left"></i> Hello World
               </a>
             
           </div>
@@ -543,7 +542,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">6</span>
+                  <span class="site-state-item-count">2</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -554,7 +553,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-count">2</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -565,7 +564,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-count">2</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
