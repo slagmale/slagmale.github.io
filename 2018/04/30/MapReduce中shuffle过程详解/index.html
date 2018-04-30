@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="hexo," />
+  <meta name="keywords" content="MapReduce," />
 
 
 
@@ -79,18 +79,22 @@
 
 
 
-<meta name="description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub.">
-<meta name="keywords" content="hexo">
+<meta name="description" content="shuffle是MapReduce的核心，map和reduce的中间过程。 Map负责过滤分发，reduce归并整理，从map输出到reduce输入就是shuffle过程。 实现的功能分区决定当前key交给哪个reduce处理 默认：按照key的hash值对reduce的个数取余进行分区">
+<meta name="keywords" content="MapReduce">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Hello World">
-<meta property="og:url" content="http://slagmale.github.io/2018/04/21/hello-world/index.html">
+<meta property="og:title" content="MapReduce中shuffle过程详解">
+<meta property="og:url" content="http://slagmale.github.io/2018/04/30/MapReduce中shuffle过程详解/index.html">
 <meta property="og:site_name" content="slagmale">
-<meta property="og:description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub.">
+<meta property="og:description" content="shuffle是MapReduce的核心，map和reduce的中间过程。 Map负责过滤分发，reduce归并整理，从map输出到reduce输入就是shuffle过程。 实现的功能分区决定当前key交给哪个reduce处理 默认：按照key的hash值对reduce的个数取余进行分区">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-04-21T08:55:37.109Z">
+<meta property="og:image" content="http://slagmale.github.io/2018/04/30/MapReduce中shuffle过程详解/Myblog/hexo/source/_posts/MapReduce中shuffle过程详解/s1.png">
+<meta property="og:image" content="http://slagmale.github.io/2018/04/30/MapReduce中shuffle过程详解/Myblog/hexo/source/_posts/MapReduce中shuffle过程详解/s2.png">
+<meta property="og:image" content="http://slagmale.github.io/2018/04/30/MapReduce中shuffle过程详解/Myblog/hexo/source/_posts/MapReduce中shuffle过程详解/s3.png">
+<meta property="og:updated_time" content="2018-04-30T07:02:45.980Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Hello World">
-<meta name="twitter:description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub.">
+<meta name="twitter:title" content="MapReduce中shuffle过程详解">
+<meta name="twitter:description" content="shuffle是MapReduce的核心，map和reduce的中间过程。 Map负责过滤分发，reduce归并整理，从map输出到reduce输入就是shuffle过程。 实现的功能分区决定当前key交给哪个reduce处理 默认：按照key的hash值对reduce的个数取余进行分区">
+<meta name="twitter:image" content="http://slagmale.github.io/2018/04/30/MapReduce中shuffle过程详解/Myblog/hexo/source/_posts/MapReduce中shuffle过程详解/s1.png">
 
 
 
@@ -120,13 +124,13 @@
 
 
 
-  <link rel="canonical" href="http://slagmale.github.io/2018/04/21/hello-world/"/>
+  <link rel="canonical" href="http://slagmale.github.io/2018/04/30/MapReduce中shuffle过程详解/"/>
 
 
 
 
 
-  <title>Hello World | slagmale</title>
+  <title>MapReduce中shuffle过程详解 | slagmale</title>
   
 
 
@@ -288,7 +292,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://slagmale.github.io/2018/04/21/hello-world/">
+    <link itemprop="mainEntityOfPage" href="http://slagmale.github.io/2018/04/30/MapReduce中shuffle过程详解/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="汪Vely">
@@ -305,7 +309,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Hello World</h1>
+          <h1 class="post-title" itemprop="name headline">MapReduce中shuffle过程详解</h1>
         
 
         <div class="post-meta">
@@ -317,8 +321,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-04-21T09:28:09+08:00">
-                2018-04-21
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-04-30T14:59:48+08:00">
+                2018-04-30
               </time>
             
 
@@ -340,8 +344,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/同步github/" itemprop="url" rel="index">
-                    <span itemprop="name">同步github</span>
+                  <a href="/categories/Hadoop/" itemprop="url" rel="index">
+                    <span itemprop="name">Hadoop</span>
                   </a>
                 </span>
 
@@ -377,15 +381,42 @@
       
 
       
-        <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.<br><a id="more"></a></p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="noopener">Deployment</a></p>
+        <p>shuffle是MapReduce的核心，map和reduce的中间过程。</p>
+<p>Map负责过滤分发，reduce归并整理，从map输出到reduce输入就是shuffle过程。</p>
+<h2 id="实现的功能"><a href="#实现的功能" class="headerlink" title="实现的功能"></a>实现的功能</h2><h3 id="分区"><a href="#分区" class="headerlink" title="分区"></a>分区</h3><p>决定当前key交给哪个reduce处理</p>
+<p>默认：按照key的hash值对reduce的个数取余进行分区</p>
+<p><img src="/2018/04/30/MapReduce中shuffle过程详解/Myblog\hexo\source\_posts\MapReduce中shuffle过程详解\s1.png" alt=""></p>
+<a id="more"></a>
+<h3 id="分组"><a href="#分组" class="headerlink" title="分组"></a>分组</h3><p>将相同key的value合并</p>
+<h3 id="排序"><a href="#排序" class="headerlink" title="排序"></a>排序</h3><p>按照key对每一个keyvalue进行排序，字典排序</p>
+<h2 id="过程"><a href="#过程" class="headerlink" title="过程"></a>过程</h2><p><img src="/2018/04/30/MapReduce中shuffle过程详解/Myblog\hexo\source\_posts\MapReduce中shuffle过程详解\s2.png" alt=""></p>
+<h3 id="map端shuffle"><a href="#map端shuffle" class="headerlink" title="map端shuffle"></a>map端shuffle</h3><h4 id="spill阶段：溢写"><a href="#spill阶段：溢写" class="headerlink" title="spill阶段：溢写"></a>spill阶段：溢写</h4><p><em>每一个map</em> task处理的结果会进入环形缓冲区（内存100M）</p>
+<h5 id="分区-1"><a href="#分区-1" class="headerlink" title="分区"></a>分区</h5><p>对每一条key进行分区（标上交给哪个reduce）</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">hadoop		<span class="number">1</span>		reduce0</span><br><span class="line">hive		<span class="number">1</span>		reduce0</span><br><span class="line">spark		<span class="number">1</span>		reduce1</span><br><span class="line">hadoop		<span class="number">1</span>		reduce0</span><br><span class="line">hbase		<span class="number">1</span>		reduce1</span><br></pre></td></tr></table></figure>
+<h5 id="排序-1"><a href="#排序-1" class="headerlink" title="排序"></a>排序</h5><p>按照key排序，将相同分区的数据进行分区内排序</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">hadoop		<span class="number">1</span>		reduce0</span><br><span class="line">hadoop		<span class="number">1</span>		reduce0</span><br><span class="line">hive		<span class="number">1</span>		reduce0</span><br><span class="line">hbase		<span class="number">1</span>		reduce1</span><br><span class="line">spark		<span class="number">1</span>		reduce1</span><br></pre></td></tr></table></figure>
+<h5 id="溢写"><a href="#溢写" class="headerlink" title="溢写"></a>溢写</h5><p>当整个缓冲区达到阈值80%，开始进行溢写</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">将当前分区排序后的数据写入磁盘变成一个文件file1</span><br><span class="line">最终生成多个spill小文件</span><br></pre></td></tr></table></figure>
+<p>可以在mapred-site.xml中设置内存的大小和溢写的阈值</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">在mapred-site.xml中设置内存的大小</span><br><span class="line"></span><br><span class="line">　　　　&lt;property&gt;</span><br><span class="line"></span><br><span class="line">　　　　　　&lt;name&gt;mapreduce.task.io.sort.mb&lt;/name&gt;</span><br><span class="line"></span><br><span class="line">　　　　　　&lt;value&gt;100&lt;/value&gt;</span><br><span class="line"></span><br><span class="line">　　　　&lt;/property&gt;</span><br><span class="line"></span><br><span class="line">在mapred-site.xml中设置内存溢写的阈值　　</span><br><span class="line"></span><br><span class="line">　　　　&lt;property&gt;</span><br><span class="line"></span><br><span class="line">　　　　　　&lt;name&gt;mapreduce.task.io.sort.spill.percent&lt;/name&gt;</span><br><span class="line"></span><br><span class="line">　　　　　　&lt;value&gt;0.8&lt;/value&gt;</span><br><span class="line"></span><br><span class="line">　　　　&lt;/property&gt;</span><br></pre></td></tr></table></figure>
+<h4 id="merge-合并"><a href="#merge-合并" class="headerlink" title="merge:合并"></a>merge:合并</h4><p>将spill生成的多个小文件进行合并</p>
+<p>排序：将相同分区的数据进行分区内排序，实现comparator比较器进行比较。最终形成一个文件。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">file1</span><br><span class="line">hadoop		<span class="number">1</span>		reduce0</span><br><span class="line">hadoop		<span class="number">1</span>		reduce0</span><br><span class="line">hive		<span class="number">1</span>		reduce0</span><br><span class="line">hbase		<span class="number">1</span>		reduce1</span><br><span class="line">spark		<span class="number">1</span>		reduce1</span><br><span class="line"></span><br><span class="line">file2</span><br><span class="line">hadoop		<span class="number">1</span>		reduce0</span><br><span class="line">hadoop		<span class="number">1</span>		reduce0</span><br><span class="line">hive		<span class="number">1</span>		reduce0</span><br><span class="line">hbase		<span class="number">1</span>		reduce1</span><br><span class="line">spark		<span class="number">1</span>		reduce1</span><br><span class="line"></span><br><span class="line">end_file:</span><br><span class="line">hadoop		<span class="number">1</span>		reduce0</span><br><span class="line">hadoop		<span class="number">1</span>		reduce0</span><br><span class="line">hadoop		<span class="number">1</span>		reduce0</span><br><span class="line">hadoop		<span class="number">1</span>		reduce0</span><br><span class="line">hive		<span class="number">1</span>		reduce0</span><br><span class="line">hive		<span class="number">1</span>		reduce0</span><br><span class="line">hbase		<span class="number">1</span>		reduce1</span><br><span class="line">hbase		<span class="number">1</span>		reduce1</span><br><span class="line">spark		<span class="number">1</span>		reduce1</span><br><span class="line">spark		<span class="number">1</span>		reduce1</span><br></pre></td></tr></table></figure>
+<p>map task 结束，通知app master，app master通知reduce拉取数据</p>
+<h3 id="reduce端shuffle"><a href="#reduce端shuffle" class="headerlink" title="reduce端shuffle"></a>reduce端shuffle</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">map task1</span><br><span class="line">		hadoop		1		reduce0</span><br><span class="line">		hadoop		1		reduce0</span><br><span class="line">		hadoop		1		reduce0</span><br><span class="line">		hadoop		1		reduce0</span><br><span class="line">		hive		1		reduce0</span><br><span class="line">		hive		1		reduce0</span><br><span class="line">		hbase		1		reduce1</span><br><span class="line">		hbase		1		reduce1</span><br><span class="line">		spark		1		reduce1</span><br><span class="line">		spark		1		reduce1</span><br><span class="line">map task2</span><br><span class="line">		hadoop		1		reduce0</span><br><span class="line">		hadoop		1		reduce0</span><br><span class="line">		hadoop		1		reduce0</span><br><span class="line">		hadoop		1		reduce0</span><br><span class="line">		hive		1		reduce0</span><br><span class="line">		hive		1		reduce0</span><br><span class="line">		hbase		1		reduce1</span><br><span class="line">		hbase		1		reduce1</span><br><span class="line">		spark		1		reduce1</span><br><span class="line">		spark		1		reduce1</span><br></pre></td></tr></table></figure>
+<p>reduce启动多个线程通过http到每台机器上拉取属于自己分区的数据</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">reduce0：</span><br><span class="line">	hadoop		<span class="number">1</span>		reduce0</span><br><span class="line">	hadoop		<span class="number">1</span>		reduce0</span><br><span class="line">	hadoop		<span class="number">1</span>		reduce0</span><br><span class="line">	hadoop		<span class="number">1</span>		reduce0</span><br><span class="line">	hadoop		<span class="number">1</span>		reduce0</span><br><span class="line">	hadoop		<span class="number">1</span>		reduce0</span><br><span class="line">	hadoop		<span class="number">1</span>		reduce0</span><br><span class="line">	hadoop		<span class="number">1</span>		reduce0</span><br><span class="line">	hive		<span class="number">1</span>		reduce0</span><br><span class="line">	hive		<span class="number">1</span>		reduce0</span><br><span class="line">	hive		<span class="number">1</span>		reduce0</span><br><span class="line">	hive		<span class="number">1</span>		reduce0</span><br></pre></td></tr></table></figure>
+<p>merge:合并，将每个map task的结果中属于自己的分区数据进行合并</p>
+<p>排序：对整体属于我分区的数据进行排序</p>
+<p>分组：对相同key的value进行合并，使用comparable完成比较。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">hadoop，list&lt;<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>&gt;</span><br><span class="line">hive,list&lt;<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>&gt;</span><br></pre></td></tr></table></figure>
+<h2 id="优化"><a href="#优化" class="headerlink" title="优化"></a>优化</h2><h3 id="combine"><a href="#combine" class="headerlink" title="combine"></a>combine</h3><p>在map阶段提前进行一次合并。一般等同于提前执行reduce</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">job.setCombinerClass(WCReduce.class);</span><br></pre></td></tr></table></figure>
+<h3 id="compress"><a href="#compress" class="headerlink" title="compress"></a>compress</h3><p>压缩中间结果集，减少磁盘IO以及网络IO</p>
+<h4 id="压缩配置方式"><a href="#压缩配置方式" class="headerlink" title="压缩配置方式"></a>压缩配置方式</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1</span>.<span class="keyword">default</span>：所有hadoop中默认的配置项</span><br><span class="line"><span class="number">2</span>.site：用于自定义配置文件，如果修改以后必须重启生效</span><br><span class="line"><span class="number">3</span>.conf对象配置每个程序的自定义配置</span><br><span class="line"><span class="number">4</span>.运行时通过参数实现用户自定义配置</span><br><span class="line">bin/yarn jar xx.jar -Dmapreduce.map.output.compress=<span class="keyword">true</span> -Dmapreduce.map.output.compress.codec=org.apache.hadoop.io.compress.Lz4Codec main_class input_path ouput_path</span><br></pre></td></tr></table></figure>
+<h4 id="查看本地库支持哪些压缩"><a href="#查看本地库支持哪些压缩" class="headerlink" title="查看本地库支持哪些压缩"></a>查看本地库支持哪些压缩</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bin/hadoop checknative</span><br></pre></td></tr></table></figure>
+<p><img src="/2018/04/30/MapReduce中shuffle过程详解/Myblog\hexo\source\_posts\MapReduce中shuffle过程详解\s3.png" alt=""></p>
+<h4 id="通过conf配置对象配置压缩"><a href="#通过conf配置对象配置压缩" class="headerlink" title="通过conf配置对象配置压缩"></a>通过conf配置对象配置压缩</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        Configuration configuration = <span class="keyword">new</span> Configuration();</span><br><span class="line">		<span class="comment">//配置map中间结果集压缩</span></span><br><span class="line">        configuration.set(<span class="string">"mapreduce.map.output.compress"</span>,<span class="string">"true"</span>);</span><br><span class="line">		configuration.set(<span class="string">"mapreduce.map.output.compress.codec"</span>, <span class="string">"org.apache.hadoop.io.compress.Lz4Codec"</span>);</span><br><span class="line">		<span class="comment">//配置reduce结果集压缩</span></span><br><span class="line">		configuration.set(<span class="string">"mapreduce.output.fileoutputformat.compress"</span>,<span class="string">"true"</span>);</span><br><span class="line">		configuration.set(<span class="string">"mapreduce.output.fileoutputformat.compress.codec"</span>, <span class="string">"org.apache.hadoop.io.compress.Lz4Codec"</span>);</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            <span class="keyword">int</span> status = ToolRunner.run(configuration, <span class="keyword">new</span> MRDriver(), args);</span><br><span class="line">            System.exit(status);</span><br><span class="line">        &#125; <span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
       
     </div>
@@ -403,7 +434,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/hexo/" rel="tag"># hexo</a>
+            <a href="/tags/MapReduce/" rel="tag"># MapReduce</a>
           
         </div>
       
@@ -416,14 +447,18 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
+              <a href="/2018/04/30/MapReduce-编程模板编写【分析网站基本指标UV】程序/" rel="next" title="MapReduce 编程模板编写【分析网站基本指标UV】程序">
+                <i class="fa fa-chevron-left"></i> MapReduce 编程模板编写【分析网站基本指标UV】程序
+              </a>
+            
           </div>
 
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2018/04/30/MapReduce-编程模板编写【分析网站基本指标UV】程序/" rel="prev" title="MapReduce 编程模板编写【分析网站基本指标UV】程序">
-                MapReduce 编程模板编写【分析网站基本指标UV】程序 <i class="fa fa-chevron-right"></i>
+              <a href="/2018/04/30/VMware12中Centos安装及配置/" rel="prev" title="VMware12中Centos安装及配置">
+                VMware12中Centos安装及配置 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -560,7 +595,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Quick-Start"><span class="nav-number">1.</span> <span class="nav-text">Quick Start</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Create-a-new-post"><span class="nav-number">1.1.</span> <span class="nav-text">Create a new post</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Run-server"><span class="nav-number">1.2.</span> <span class="nav-text">Run server</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Generate-static-files"><span class="nav-number">1.3.</span> <span class="nav-text">Generate static files</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Deploy-to-remote-sites"><span class="nav-number">1.4.</span> <span class="nav-text">Deploy to remote sites</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#实现的功能"><span class="nav-number">1.</span> <span class="nav-text">实现的功能</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#分区"><span class="nav-number">1.1.</span> <span class="nav-text">分区</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#分组"><span class="nav-number">1.2.</span> <span class="nav-text">分组</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#排序"><span class="nav-number">1.3.</span> <span class="nav-text">排序</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#过程"><span class="nav-number">2.</span> <span class="nav-text">过程</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#map端shuffle"><span class="nav-number">2.1.</span> <span class="nav-text">map端shuffle</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#spill阶段：溢写"><span class="nav-number">2.1.1.</span> <span class="nav-text">spill阶段：溢写</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#分区-1"><span class="nav-number">2.1.1.1.</span> <span class="nav-text">分区</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#排序-1"><span class="nav-number">2.1.1.2.</span> <span class="nav-text">排序</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#溢写"><span class="nav-number">2.1.1.3.</span> <span class="nav-text">溢写</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#merge-合并"><span class="nav-number">2.1.2.</span> <span class="nav-text">merge:合并</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#reduce端shuffle"><span class="nav-number">2.2.</span> <span class="nav-text">reduce端shuffle</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#优化"><span class="nav-number">3.</span> <span class="nav-text">优化</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#combine"><span class="nav-number">3.1.</span> <span class="nav-text">combine</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#compress"><span class="nav-number">3.2.</span> <span class="nav-text">compress</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#压缩配置方式"><span class="nav-number">3.2.1.</span> <span class="nav-text">压缩配置方式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#查看本地库支持哪些压缩"><span class="nav-number">3.2.2.</span> <span class="nav-text">查看本地库支持哪些压缩</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#通过conf配置对象配置压缩"><span class="nav-number">3.2.3.</span> <span class="nav-text">通过conf配置对象配置压缩</span></a></li></ol></li></ol></li></ol></div>
             
 
           </div>
