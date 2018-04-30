@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="hadoop，namenode," />
 
 
 
@@ -79,19 +79,20 @@
 
 
 
-<meta name="description" content="title: Hadoop中的Secondary NameNodedate: 2018-04-30 15:15:26tags: [hadoop，namenode]categories: Hadoop 在我们深入了解Secondary NameNode之前，我们先来看看NameNode是做什么的。 NameNodeNameNode主要是用来保存HDFS的元数据信息，比如命名空间信息，块信息等。当它运">
+<meta name="description" content="在我们深入了解Secondary NameNode之前，我们先来看看NameNode是做什么的。 NameNodeNameNode主要是用来保存HDFS的元数据信息，比如命名空间信息，块信息等。当它运行的时候，这些信息是存在内存中的。但是这些信息也可以持久化到磁盘上。">
+<meta name="keywords" content="hadoop，namenode">
 <meta property="og:type" content="article">
-<meta property="og:title" content="slagmale">
+<meta property="og:title" content="Hadoop中的Secondary NameNode">
 <meta property="og:url" content="http://slagmale.github.io/2018/04/30/Hadoop中的Secondary-NameNode/index.html">
 <meta property="og:site_name" content="slagmale">
-<meta property="og:description" content="title: Hadoop中的Secondary NameNodedate: 2018-04-30 15:15:26tags: [hadoop，namenode]categories: Hadoop 在我们深入了解Secondary NameNode之前，我们先来看看NameNode是做什么的。 NameNodeNameNode主要是用来保存HDFS的元数据信息，比如命名空间信息，块信息等。当它运">
+<meta property="og:description" content="在我们深入了解Secondary NameNode之前，我们先来看看NameNode是做什么的。 NameNodeNameNode主要是用来保存HDFS的元数据信息，比如命名空间信息，块信息等。当它运行的时候，这些信息是存在内存中的。但是这些信息也可以持久化到磁盘上。">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://slagmale.github.io/2018/04/30/Hadoop中的Secondary-NameNode/m1.png">
 <meta property="og:image" content="http://slagmale.github.io/2018/04/30/Hadoop中的Secondary-NameNode/m2.png">
-<meta property="og:updated_time" content="2018-04-30T07:17:40.716Z">
+<meta property="og:updated_time" content="2018-04-30T07:22:46.741Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="slagmale">
-<meta name="twitter:description" content="title: Hadoop中的Secondary NameNodedate: 2018-04-30 15:15:26tags: [hadoop，namenode]categories: Hadoop 在我们深入了解Secondary NameNode之前，我们先来看看NameNode是做什么的。 NameNodeNameNode主要是用来保存HDFS的元数据信息，比如命名空间信息，块信息等。当它运">
+<meta name="twitter:title" content="Hadoop中的Secondary NameNode">
+<meta name="twitter:description" content="在我们深入了解Secondary NameNode之前，我们先来看看NameNode是做什么的。 NameNodeNameNode主要是用来保存HDFS的元数据信息，比如命名空间信息，块信息等。当它运行的时候，这些信息是存在内存中的。但是这些信息也可以持久化到磁盘上。">
 <meta name="twitter:image" content="http://slagmale.github.io/2018/04/30/Hadoop中的Secondary-NameNode/m1.png">
 
 
@@ -128,7 +129,7 @@
 
 
 
-  <title> | slagmale</title>
+  <title>Hadoop中的Secondary NameNode | slagmale</title>
   
 
 
@@ -307,7 +308,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline"></h1>
+          <h1 class="post-title" itemprop="name headline">Hadoop中的Secondary NameNode</h1>
         
 
         <div class="post-meta">
@@ -329,6 +330,28 @@
             
           </span>
 
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Hadoop/" itemprop="url" rel="index">
+                    <span itemprop="name">Hadoop</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
           
 
           
@@ -357,8 +380,7 @@
       
 
       
-        <p>title: Hadoop中的Secondary NameNode<br>date: 2018-04-30 15:15:26<br>tags: [hadoop，namenode]<br>categories: Hadoop</p>
-<p>在我们深入了解Secondary NameNode之前，我们先来看看NameNode是做什么的。</p>
+        <p>在我们深入了解Secondary NameNode之前，我们先来看看NameNode是做什么的。</p>
 <h2 id="NameNode"><a href="#NameNode" class="headerlink" title="NameNode"></a>NameNode</h2><p>NameNode主要是用来保存HDFS的元数据信息，比如命名空间信息，块信息等。当它运行的时候，这些信息是存在内存中的。但是这些信息也可以持久化到磁盘上。</p>
 <p><img src="/2018/04/30/Hadoop中的Secondary-NameNode/m1.png" alt="这里写图片描述"></p>
 <a id="more"></a>
@@ -391,6 +413,12 @@
 
     <footer class="post-footer">
       
+        <div class="post-tags">
+          
+            <a href="/tags/hadoop，namenode/" rel="tag"># hadoop，namenode</a>
+          
+        </div>
+      
 
       
       
@@ -400,8 +428,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/04/30/VMware12中Centos安装及配置/" rel="next" title="">
-                <i class="fa fa-chevron-left"></i> 
+              <a href="/2018/04/30/VMware12中Centos安装及配置/" rel="next" title="VMware12中Centos安装及配置">
+                <i class="fa fa-chevron-left"></i> VMware12中Centos安装及配置
               </a>
             
           </div>
@@ -504,7 +532,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-count">5</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -515,7 +543,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-count">5</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>

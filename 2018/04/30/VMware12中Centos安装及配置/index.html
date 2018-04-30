@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="Centos," />
 
 
 
@@ -79,12 +79,13 @@
 
 
 
-<meta name="description" content="title: VMware12中Centos安装及配置date: 2018-04-30 15:05:06tags: [Centos]categories: Centos 1.安装虚拟机+操作系统 : VMware  Centos 2.设置基础环境三要素：IP  主机名  映射(包括本地) 3.网络配置 ：设置DNS解析   PING通外网 4.创建普通用户  5.设置sudo权限 6.禁用防火墙">
+<meta name="description" content="1.安装虚拟机+操作系统 : VMware  Centos 2.设置基础环境三要素：IP  主机名  映射(包括本地) 3.网络配置 ：设置DNS解析   PING通外网 4.创建普通用户  5.设置sudo权限 6.禁用防火墙 7.卸载系统自带的Open jdk并配置Oracle jdk">
+<meta name="keywords" content="Centos">
 <meta property="og:type" content="article">
-<meta property="og:title" content="slagmale">
+<meta property="og:title" content="VMware12中Centos安装及配置">
 <meta property="og:url" content="http://slagmale.github.io/2018/04/30/VMware12中Centos安装及配置/index.html">
 <meta property="og:site_name" content="slagmale">
-<meta property="og:description" content="title: VMware12中Centos安装及配置date: 2018-04-30 15:05:06tags: [Centos]categories: Centos 1.安装虚拟机+操作系统 : VMware  Centos 2.设置基础环境三要素：IP  主机名  映射(包括本地) 3.网络配置 ：设置DNS解析   PING通外网 4.创建普通用户  5.设置sudo权限 6.禁用防火墙">
+<meta property="og:description" content="1.安装虚拟机+操作系统 : VMware  Centos 2.设置基础环境三要素：IP  主机名  映射(包括本地) 3.网络配置 ：设置DNS解析   PING通外网 4.创建普通用户  5.设置sudo权限 6.禁用防火墙 7.卸载系统自带的Open jdk并配置Oracle jdk">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://slagmale.github.io/2018/04/30/VMware12中Centos安装及配置/1.png">
 <meta property="og:image" content="http://slagmale.github.io/2018/04/30/VMware12中Centos安装及配置/2.jpg">
@@ -105,10 +106,10 @@
 <meta property="og:image" content="https://images2018.cnblogs.com/blog/1299285/201804/1299285-20180423204941144-381611163.png">
 <meta property="og:image" content="https://images2018.cnblogs.com/blog/1299285/201804/1299285-20180423205112149-207118027.png">
 <meta property="og:image" content="https://images2018.cnblogs.com/blog/1299285/201804/1299285-20180423205202319-2026897986.png">
-<meta property="og:updated_time" content="2018-04-30T07:14:56.283Z">
+<meta property="og:updated_time" content="2018-04-30T07:23:23.408Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="slagmale">
-<meta name="twitter:description" content="title: VMware12中Centos安装及配置date: 2018-04-30 15:05:06tags: [Centos]categories: Centos 1.安装虚拟机+操作系统 : VMware  Centos 2.设置基础环境三要素：IP  主机名  映射(包括本地) 3.网络配置 ：设置DNS解析   PING通外网 4.创建普通用户  5.设置sudo权限 6.禁用防火墙">
+<meta name="twitter:title" content="VMware12中Centos安装及配置">
+<meta name="twitter:description" content="1.安装虚拟机+操作系统 : VMware  Centos 2.设置基础环境三要素：IP  主机名  映射(包括本地) 3.网络配置 ：设置DNS解析   PING通外网 4.创建普通用户  5.设置sudo权限 6.禁用防火墙 7.卸载系统自带的Open jdk并配置Oracle jdk">
 <meta name="twitter:image" content="http://slagmale.github.io/2018/04/30/VMware12中Centos安装及配置/1.png">
 
 
@@ -145,7 +146,7 @@
 
 
 
-  <title> | slagmale</title>
+  <title>VMware12中Centos安装及配置 | slagmale</title>
   
 
 
@@ -324,7 +325,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline"></h1>
+          <h1 class="post-title" itemprop="name headline">VMware12中Centos安装及配置</h1>
         
 
         <div class="post-meta">
@@ -346,6 +347,28 @@
             
           </span>
 
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Centos/" itemprop="url" rel="index">
+                    <span itemprop="name">Centos</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
           
 
           
@@ -374,8 +397,7 @@
       
 
       
-        <p>title: VMware12中Centos安装及配置<br>date: 2018-04-30 15:05:06<br>tags: [Centos]<br>categories: Centos</p>
-<p>1.安装虚拟机+操作系统 : VMware  Centos</p>
+        <p>1.安装虚拟机+操作系统 : VMware  Centos</p>
 <p>2.设置基础环境三要素：IP  主机名  映射(包括本地)</p>
 <p>3.网络配置 ：设置DNS解析   PING通外网</p>
 <p>4.创建普通用户 </p>
@@ -440,6 +462,12 @@
 
     <footer class="post-footer">
       
+        <div class="post-tags">
+          
+            <a href="/tags/Centos/" rel="tag"># Centos</a>
+          
+        </div>
+      
 
       
       
@@ -459,8 +487,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2018/04/30/Hadoop中的Secondary-NameNode/" rel="prev" title="">
-                 <i class="fa fa-chevron-right"></i>
+              <a href="/2018/04/30/Hadoop中的Secondary-NameNode/" rel="prev" title="Hadoop中的Secondary NameNode">
+                Hadoop中的Secondary NameNode <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -553,7 +581,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-count">5</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -564,7 +592,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-count">5</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
