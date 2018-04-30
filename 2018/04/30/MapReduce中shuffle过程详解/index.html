@@ -87,14 +87,14 @@
 <meta property="og:site_name" content="slagmale">
 <meta property="og:description" content="shuffle是MapReduce的核心，map和reduce的中间过程。 Map负责过滤分发，reduce归并整理，从map输出到reduce输入就是shuffle过程。 实现的功能分区决定当前key交给哪个reduce处理 默认：按照key的hash值对reduce的个数取余进行分区">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://slagmale.github.io/2018/04/30/MapReduce中shuffle过程详解/Myblog/hexo/source/_posts/MapReduce中shuffle过程详解/s1.png">
-<meta property="og:image" content="http://slagmale.github.io/2018/04/30/MapReduce中shuffle过程详解/Myblog/hexo/source/_posts/MapReduce中shuffle过程详解/s2.png">
-<meta property="og:image" content="http://slagmale.github.io/2018/04/30/MapReduce中shuffle过程详解/Myblog/hexo/source/_posts/MapReduce中shuffle过程详解/s3.png">
-<meta property="og:updated_time" content="2018-04-30T07:02:45.980Z">
+<meta property="og:image" content="http://slagmale.github.io/2018/04/30/MapReduce中shuffle过程详解/s1.png">
+<meta property="og:image" content="http://slagmale.github.io/2018/04/30/MapReduce中shuffle过程详解/s2.png">
+<meta property="og:image" content="http://slagmale.github.io/2018/04/30/MapReduce中shuffle过程详解/s3.png">
+<meta property="og:updated_time" content="2018-04-30T07:14:03.761Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="MapReduce中shuffle过程详解">
 <meta name="twitter:description" content="shuffle是MapReduce的核心，map和reduce的中间过程。 Map负责过滤分发，reduce归并整理，从map输出到reduce输入就是shuffle过程。 实现的功能分区决定当前key交给哪个reduce处理 默认：按照key的hash值对reduce的个数取余进行分区">
-<meta name="twitter:image" content="http://slagmale.github.io/2018/04/30/MapReduce中shuffle过程详解/Myblog/hexo/source/_posts/MapReduce中shuffle过程详解/s1.png">
+<meta name="twitter:image" content="http://slagmale.github.io/2018/04/30/MapReduce中shuffle过程详解/s1.png">
 
 
 
@@ -385,11 +385,11 @@
 <p>Map负责过滤分发，reduce归并整理，从map输出到reduce输入就是shuffle过程。</p>
 <h2 id="实现的功能"><a href="#实现的功能" class="headerlink" title="实现的功能"></a>实现的功能</h2><h3 id="分区"><a href="#分区" class="headerlink" title="分区"></a>分区</h3><p>决定当前key交给哪个reduce处理</p>
 <p>默认：按照key的hash值对reduce的个数取余进行分区</p>
-<p><img src="/2018/04/30/MapReduce中shuffle过程详解/Myblog\hexo\source\_posts\MapReduce中shuffle过程详解\s1.png" alt=""></p>
+<p><img src="/2018/04/30/MapReduce中shuffle过程详解/s1.png" alt=""></p>
 <a id="more"></a>
 <h3 id="分组"><a href="#分组" class="headerlink" title="分组"></a>分组</h3><p>将相同key的value合并</p>
 <h3 id="排序"><a href="#排序" class="headerlink" title="排序"></a>排序</h3><p>按照key对每一个keyvalue进行排序，字典排序</p>
-<h2 id="过程"><a href="#过程" class="headerlink" title="过程"></a>过程</h2><p><img src="/2018/04/30/MapReduce中shuffle过程详解/Myblog\hexo\source\_posts\MapReduce中shuffle过程详解\s2.png" alt=""></p>
+<h2 id="过程"><a href="#过程" class="headerlink" title="过程"></a>过程</h2><p><img src="/2018/04/30/MapReduce中shuffle过程详解/s2.png" alt=""></p>
 <h3 id="map端shuffle"><a href="#map端shuffle" class="headerlink" title="map端shuffle"></a>map端shuffle</h3><h4 id="spill阶段：溢写"><a href="#spill阶段：溢写" class="headerlink" title="spill阶段：溢写"></a>spill阶段：溢写</h4><p><em>每一个map</em> task处理的结果会进入环形缓冲区（内存100M）</p>
 <h5 id="分区-1"><a href="#分区-1" class="headerlink" title="分区"></a>分区</h5><p>对每一条key进行分区（标上交给哪个reduce）</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">hadoop		<span class="number">1</span>		reduce0</span><br><span class="line">hive		<span class="number">1</span>		reduce0</span><br><span class="line">spark		<span class="number">1</span>		reduce1</span><br><span class="line">hadoop		<span class="number">1</span>		reduce0</span><br><span class="line">hbase		<span class="number">1</span>		reduce1</span><br></pre></td></tr></table></figure>
@@ -415,7 +415,7 @@
 <h3 id="compress"><a href="#compress" class="headerlink" title="compress"></a>compress</h3><p>压缩中间结果集，减少磁盘IO以及网络IO</p>
 <h4 id="压缩配置方式"><a href="#压缩配置方式" class="headerlink" title="压缩配置方式"></a>压缩配置方式</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1</span>.<span class="keyword">default</span>：所有hadoop中默认的配置项</span><br><span class="line"><span class="number">2</span>.site：用于自定义配置文件，如果修改以后必须重启生效</span><br><span class="line"><span class="number">3</span>.conf对象配置每个程序的自定义配置</span><br><span class="line"><span class="number">4</span>.运行时通过参数实现用户自定义配置</span><br><span class="line">bin/yarn jar xx.jar -Dmapreduce.map.output.compress=<span class="keyword">true</span> -Dmapreduce.map.output.compress.codec=org.apache.hadoop.io.compress.Lz4Codec main_class input_path ouput_path</span><br></pre></td></tr></table></figure>
 <h4 id="查看本地库支持哪些压缩"><a href="#查看本地库支持哪些压缩" class="headerlink" title="查看本地库支持哪些压缩"></a>查看本地库支持哪些压缩</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bin/hadoop checknative</span><br></pre></td></tr></table></figure>
-<p><img src="/2018/04/30/MapReduce中shuffle过程详解/Myblog\hexo\source\_posts\MapReduce中shuffle过程详解\s3.png" alt=""></p>
+<p><img src="/2018/04/30/MapReduce中shuffle过程详解/s3.png" alt=""></p>
 <h4 id="通过conf配置对象配置压缩"><a href="#通过conf配置对象配置压缩" class="headerlink" title="通过conf配置对象配置压缩"></a>通过conf配置对象配置压缩</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        Configuration configuration = <span class="keyword">new</span> Configuration();</span><br><span class="line">		<span class="comment">//配置map中间结果集压缩</span></span><br><span class="line">        configuration.set(<span class="string">"mapreduce.map.output.compress"</span>,<span class="string">"true"</span>);</span><br><span class="line">		configuration.set(<span class="string">"mapreduce.map.output.compress.codec"</span>, <span class="string">"org.apache.hadoop.io.compress.Lz4Codec"</span>);</span><br><span class="line">		<span class="comment">//配置reduce结果集压缩</span></span><br><span class="line">		configuration.set(<span class="string">"mapreduce.output.fileoutputformat.compress"</span>,<span class="string">"true"</span>);</span><br><span class="line">		configuration.set(<span class="string">"mapreduce.output.fileoutputformat.compress.codec"</span>, <span class="string">"org.apache.hadoop.io.compress.Lz4Codec"</span>);</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            <span class="keyword">int</span> status = ToolRunner.run(configuration, <span class="keyword">new</span> MRDriver(), args);</span><br><span class="line">            System.exit(status);</span><br><span class="line">        &#125; <span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
       
@@ -457,8 +457,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2018/04/30/VMware12中Centos安装及配置/" rel="prev" title="VMware12中Centos安装及配置">
-                VMware12中Centos安装及配置 <i class="fa fa-chevron-right"></i>
+              <a href="/2018/04/30/VMware12中Centos安装及配置/" rel="prev" title="">
+                 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -540,7 +540,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-count">6</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
